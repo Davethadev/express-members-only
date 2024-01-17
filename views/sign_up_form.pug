@@ -1,0 +1,33 @@
+extends layout 
+block content 
+
+    div(class='w-full flex justify-center pt-[50px]')
+        form(method='POST', class='w-[500px]')
+            h1(class='p-2 font-bold text-2xl') Create Account
+            div(class='grid grid-cols-2')
+                div(class='p-2 mt-2')
+                    label(for="first_name") First name
+                    input(type="text" name='first_name' placeholder='John', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+                div(class='p-2 mt-2')
+                    label(for="last_name") Last name
+                    input(type="text" name='last_name' placeholder='Doe', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-2')
+                label(for="email") Email
+                input(type="email" name='email' placeholder='johndoe@gmail.com', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-2')
+                label(for="password") Password
+                input(type="password" name='password' placeholder='*****', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-2')
+                label(for="confirm_password") Confirm Password
+                input(type="password" name='password_confirmation' placeholder='*****', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-2 flex items-center')
+                input(type="checkbox" name='is_admin', class='mr-2')
+                label(for="admin")  Admin privileges     
+            div(class='w-full p-2 mt-2 text-center bg-black text-white py-2 rounded')
+                button(type='submit', class='w-full') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
+        

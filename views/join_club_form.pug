@@ -1,0 +1,10 @@
+extends layout 
+block content
+
+    div(class='w-full flex justify-center pt-[80px]')
+        form(method='post',class='w-[500px]')
+            div(class='w-full mt-2')
+                label(for="passcode") Enter secret passcode to join club
+                input(type="text" name='passcode', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-6 text-center bg-black text-white py-2 rounded')
+                button(type='submit', class='w-full') Submit

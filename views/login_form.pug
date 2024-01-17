@@ -1,0 +1,20 @@
+extends layout
+block content 
+
+    div(class='w-full flex justify-center pt-[80px]')
+        form(method="POST" action="/auth/login", class='w-full md:w-[500px]')
+            h1(class='font-bold text-2xl') Login
+            p(class='py-4') Welcome back!!! Enter your email and password to login to your account
+            div(class='w-full mt-2')
+                label(for="email") Email
+                input(type="text" name="email" placeholder='johndoe@gmail.com', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full mt-2')
+                label(for="password") Password
+                input(type="password" name="password" placeholder='*****', class='w-full border-2 rounded border-gray-200 block mt-1 p-1 outline-none indent-[2px]')
+            div(class='w-full p-2 mt-6 text-center bg-black text-white py-2 rounded')
+                button(type='submit', class='w-full') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg

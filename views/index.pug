@@ -1,0 +1,52 @@
+extends layout
+block content
+  //- h1 Welcome to Members Only
+  div(class='w-full md:w-[90%] mx-auto py-8')
+    if user
+      div(class='flex justify-between items-center')
+        div(class='w-fit p-2 text-center bg-black text-white py-2 rounded')
+          a(href="/user/post/create", class='w-full') New post
+
+        div(class='w-fit p-2 text-center bg-red-500 text-white py-2 rounded')
+          a(href="/auth/log-out", class='w-full') Log out
+
+      if (user.status !== 'member' && !user.isAdmin)
+        div(class='mt-4')
+          a(href="/user/join", class='underline') Join the club now to become a member and enjoy special perks
+
+      h2(class='text-center font-bold text-2xl py-8') Posts
+
+      if posts.length
+        div(class='grid grid-cols-2 gap-4 w-full')
+          each post in posts
+            div(class='bg-gray-100 rounded p-4')
+              div(class='flex justify-between items-center')
+                h4(class='font-bold') #{post.title}
+                if user.isAdmin
+                  div(class='p-2 text-center bg-red-500 text-white text-xs py-1 rounded w-fit ml-auto')
+                    a(href="/user" + post.url + "/delete") Delete post
+              p #{post.post}
+              if user.status === 'member' || user.isAdmin
+                div(class='mt-2 flex justify-between items-center')
+                  p Posted by: #{post.author}
+                  p Date posted: #{post.date_formatted}
+    else
+      div(class='w-full md:w-[400px] mx-auto text-center')
+        div(class='w-full p-2 mt-6 text-center bg-black text-white py-2 rounded')
+          a(href="/auth/signup") Sign up
+
+        p(class='py-4') OR 
+        
+        p Already have an account? 
+          a(href="/auth/login", class='underline') Login
+
+      div(class='w-full md:w-[90%] mx-auto pt-4')
+        h2(class='text-center font-bold text-2xl py-8') Posts
+        if posts.length
+        div(class='grid grid-cols-1 md:grid-cols-2 gap-4 w-full')
+          each post in posts
+            div(class='bg-gray-100 rounded p-4')
+              h4(class='font-bold') #{post.title}
+              p #{post.post}
+
+
